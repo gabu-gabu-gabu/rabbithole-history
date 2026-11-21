@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RabbitHole: fall down history</title>
+<meta name="description" content="Pick a place on the map, pick an era, and keep choosing the more interesting of two true facts. History, one rabbit hole at a time.">
+<meta property="og:title" content="RabbitHole: fall down history">
+<meta property="og:description" content="Pick a place on the map, pick an era, and keep choosing the more interesting of two true facts.">
+<meta property="og:image" content="https://gabu-gabu-gabu.github.io/rabbithole-history/img/icon.png">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#F4ECDB" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1B1712" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://gabu-gabu-gabu.github.io/rabbithole-history/">
+<link rel="icon" href="img/icon.png">
+<link rel="apple-touch-icon" href="img/icon.png">
+<link rel="stylesheet" href="style.css?v=8">
+</head>
+<body>
+
+<header class="top">
+  <a class="brand" href="#explore" aria-label="RabbitHole, back to the map">
+    <picture>
+      <source srcset="img/rabbit-dark.png" media="(prefers-color-scheme: dark)">
+      <img src="img/rabbit.png" alt="" width="58" height="40">
+    </picture>
+    <span>RabbitHole</span>
+  </a>
+  <nav aria-label="Sections">
+    <a href="#explore">Explore</a>
+    <a href="#about">About</a>
+    <a class="store" id="store-top" href="#" rel="noopener" aria-label="Download our mobile app"><span class="wide">Download our mobile app</span><span class="narrow">Get the app</span></a>
+  </nav>
+</header>
+
+<main>
+
+<section id="explore" aria-labelledby="explore-h">
+  <div class="intro">
+    <h1 id="explore-h">Pick a place. Pick a time. Fall in.</h1>
+    <p>Choose anywhere on the map and any era on the slider. Then keep picking the more interesting of two true facts, one level deeper each time.</p>
+  </div>
+
+  <div class="stage" id="stage">
+    <div class="mapcard">
+      <svg id="map" viewBox="0 0 1000 498" role="group" aria-label="World map: choose a region"></svg>
+      <div class="under-map">
+        <p class="hover" id="hover" aria-live="polite">&nbsp;</p>
+        <button type="button" class="zoom-out" id="zoom-out" hidden>Zoom out</button>
+      </div>
+      <div class="pick">
+        <label for="region-list">Or choose from a list</label>
+        <select id="region-list"><option value="">All 27 regions…</option></select>
+      </div>
+      <div class="era">
+        <div class="era-now"><strong id="era-name">Classical</strong><span id="era-span"></span></div>
+        <label class="vh" for="era-slider">Era</label>
+        <input id="era-slider" type="range" min="0" max="7" step="1" value="2">
+        <div class="era-ticks" id="era-ticks" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <aside class="panel" id="panel" aria-live="polite">
+      <div class="empty" id="panel-empty">
+        <h2>Where to?</h2>
+        <p>Choose a region on the map. Darker regions have facts for the era you've chosen.</p>
+      </div>
+      <div id="panel-place" hidden>
+        <p class="eyebrow" id="place-era"></p>
+        <h2 id="place-name"></h2>
+        <div class="none-here" id="none-here" hidden>
+          <p id="none-line"></p>
+          <div class="again" id="none-eras"></div>
+        </div>
+        <ul class="cats" id="cats"></ul>
+      </div>
+    </aside>
+  </div>
+
+  <div class="hole" id="hole" hidden>
+    <div class="hole-head">
+      <button type="button" class="back" id="hole-back">← Back to the map</button>
+      <p class="crumb" id="crumb"></p>
+      <p class="level" id="level"></p>
+    </div>
+    <p class="prompt" id="prompt">Which is more interesting? Choose it to go deeper. Highlighted names open a card.</p>
+    <div class="pair" id="pair"></div>
+    <div class="bottom" id="bottom" hidden>
+      <picture>
+        <source srcset="img/rabbit-dark.png" media="(prefers-color-scheme: dark)">
+        <img src="img/rabbit.png" alt="" width="120" height="82">
+      </picture>
+      <h2>You've reached the bottom of this hole.</h2>
+      <p id="bottom-line"></p>
+      <div class="again" id="again"></div>
+    </div>
+  </div>
+</section>
+
+<section id="app" class="band" aria-labelledby="app-h">
+  <img src="img/icon.png" alt="The RabbitHole app icon: a rabbit leaping into a stone well" width="120" height="120">
+  <div>
+    <h2 id="app-h">There's more in the app</h2>
+    <p>On your iPhone, RabbitHole also has 16 true stories where you choose the way and reach different endings, the lives of 1,500 people told step by step, and a daily streak. It works offline, in English, Spanish, Portuguese and Italian, and it collects nothing about you.</p>
+    <a class="store big" id="store-mid" href="#" rel="noopener">Download our mobile app</a>
+  </div>
+</section>
+
+<section id="about" aria-labelledby="about-h">
+  <h2 id="about-h">Where the idea comes from</h2>
+  <div class="about-text" id="about-text">
+    <p>Everyone knows the feeling. You look up one small thing, an hour later you are reading about something else entirely, and you can't quite say how you got there. People call it falling down a rabbit hole.</p>
+    <p>RabbitHole is built to make that happen on purpose, and with history. You start somewhere on the map, at some point in the last twelve thousand years. Two facts appear. You pick the one that pulls at you, and the next two follow from it. Nobody tells you what you ought to find interesting.</p>
+    <p>There are no accounts, no adverts and no feed designed to keep you scrolling. Just the past, and your own curiosity deciding where to go next.</p>
+  </div>
+</section>
+
+</main>
+
+<dialog class="card" id="card" aria-labelledby="card-name">
+  <p class="eyebrow" id="card-kind"></p>
+  <h2 id="card-name"></h2>
+  <p id="card-text"></p>
+  <p class="src" id="card-src"></p>
+  <a class="life" id="card-life" href="#" target="_blank" rel="noopener" hidden>Follow their whole life, step by step, in the app →</a>
+  <button type="button" class="back" id="card-close">Close</button>
+</dialog>
+
+<footer>
+  <p><strong>Privacy.</strong> This site and the app collect no data about you. The site remembers which facts you've read only inside your own browser.</p>
+  <p><strong>Sources.</strong> Every fact names the article it was written from and links to it. Facts are written from English Wikipedia articles, which are available under the <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener">CC BY-SA 4.0</a> licence.</p>
+  <p><strong>Contact.</strong> <span class="mail">rabbitholehistoryapp@gmail.com</span></p>
+</footer>
+
+<script src="logic.js?v=7"></script>
+<script src="app.js?v=8"></script>
+</body>
+</html>

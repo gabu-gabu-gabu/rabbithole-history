@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gabu-gabu-gabu.github.io/rabbithole-history/sitemap.xml
